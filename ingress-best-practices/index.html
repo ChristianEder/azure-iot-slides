@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>Azure IoT Data Ingress Layer Best Practices</title>
+
+	<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+	<meta name="author" content="Hakim El Hattab">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+	<link rel="stylesheet" href="css/azureiot.css">
+
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+
+	<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+
+	<div class="reveal azure-iot">
+
+		<!-- Any section element inside of this container is displayed as a slide -->
+		<div class="slides">
+
+			<section class="title-slide">
+				<h2>Choosing the right tools for the job</h1>
+					<h3>Best Practices for your Azure IoT Data Ingress Layer</h3>
+			</section>
+
+			<section>
+				<h2>Azure IoT reference architecture</h2>
+				<img class="stretch" data-src="img/reference-architecture.png">
+			</section>
+
+			<section>
+				<h2>Data Ingress</h2>
+				<div class="stretch">
+					<div style="width: 100%; height: 50%; background-image:url('img/ingress.png'); background-size: contain; background-repeat: no-repeat; background-position-x: center;">
+					</div>
+					<ul style="margin-top: 50px">
+						<li class="fragment">Cloud Gateway is a solved problem: Azure IoT Hub</li>
+						<li class="fragment">Data Ingress is about moving data as fast as possible from the cloud gateway into stream processors & storage</li>
+					</ul>
+				</div>
+			</section>
+
+			<section>
+				<h2>Responsibilities of the data ingress layer</h2>
+				<ul>
+					<li class="fragment">
+						Deserializing arriving packages
+					</li>
+					<li class="fragment">
+						Making sceurity & plausibility checks
+					</li>
+					<li class="fragment">
+						Routing data forward into the system
+					</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Data Ingress - Available Azure services</h2>
+				<h3>IoT Hub Data Routing</h3>
+				<div>
+					<img class="stretch" data-src="img/IotHubRouting.png">
+
+					<div class="small-list">
+						Routes define
+						<br/>
+						<ul>
+							<li>
+								What kind of data (device messages, lifecycle events, device twin changes)…
+							</li>
+							<li>
+								… with which properties (filtering)…
+							</li>
+							<li>
+								… goes where by selecting an Endpoint (=data sink, e.g. Event Hubs, Service Bus Queues & Topics, Blob Storage)
+							</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+
+			<section>
+				<h2>Data Ingress - Available Azure services</h2>
+				<h3>Stream Analytics</h3>
+				<img class="stretch" data-src="img/StreamAnalytics.png">
+			</section>
+
+			<section>
+				<h2>Data Ingress - Available Azure services</h2>
+				<h3>Stream Analytics</h3>
+				<div class="stretch">
+					<div style="width: 100%; height: 40%; background-image:url('img/StreamAnalytics.png'); background-size: contain; background-repeat: no-repeat; background-position-x: center;">
+					</div>
+					<div class="small-list">
+						Inputs can be
+						<br/>
+						<ul>
+							<li>
+								Events streams from an IoT Hub or Event Hub (currently only JSON, CSV and AVRO serialization formats are supported)
+							</li>
+							<li>
+								Reference data for joining from a blob storage
+							</li>
+						</ul>
+					</div>
+					<div class="small-list" style="margin-top: 1em">
+						Outputs can be
+						<br/>
+						<ul>
+							<li>
+								Almost anything
+							</li>
+						</ul>
+					</div>
+					<div class="small-list" style="margin-top: 1em">
+						Routing is implemented via a SQL-like syntax
+						<br/>
+						<ul>
+							<li>
+								SELECT * INTO output FROM input ... WHERE, GROUP BY
+							</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<h2>Data Ingress - Available Azure services</h2>
+				<h3>Functions</h3>
+				<img class="stretch" data-src="img/FunctionRouting.png">
+			</section>
+
+			<section>
+				<h2>Data Ingress - Available Azure services</h2>
+				<h3>Functions</h3>
+				<div class="stretch">
+					<div style="width: 100%; height: 40%; background-image:url('img/FunctionRouting.png'); background-size: contain; background-repeat: no-repeat; background-position-x: center;">
+					</div>
+					<div class="small-list">
+						Inputs / Triggers can be
+						<br/>
+						<ul>
+							<li>
+								HTTPS requests
+							</li>
+							<li>
+								Events streams from an IoT Hub or Event Hub, Messages from a Service Bus
+							</li>
+							<li>
+								Updated / Inserted data in a Blob or CosmosDB
+							</li>
+						</ul>
+					</div>
+					<div class="small-list" style="margin-top: 1em">
+						Outputs can be
+						<br/>
+						<ul>
+							<li>
+								Literally anything that has an API
+							</li>
+						</ul>
+					</div>
+					<div class="small-list" style="margin-top: 1em">
+						Routing is implemented with the programming language of you choice
+						<br/>
+						<ul>
+							<li>
+								C#, F#, JavaScript, Java (in preview)
+							</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+
+
+			<section>
+				<h2>Data Ingress - Available Azure services</h2>
+				<h3>General Compute Services - such as Service Fabric</h3>
+				<img class="stretch" data-src="img/ComputeRouting.png">
+			</section>
+
+			<section>
+				<h2>Data Ingress - Available Azure services</h2>
+				<h3>General Compute Services - such as Service Fabric</h3>
+				<div class="stretch">
+					<div style="width: 100%; height: 50%; background-image:url('img/ComputeRouting.png'); background-size: contain; background-repeat: no-repeat; background-position-x: center;">
+					</div>
+					<div class="small-list">
+						Inputs / Triggers can be
+						<br/>
+						<ul>
+							<li>
+								Literally anything that has an API
+							</li>
+						</ul>
+					</div>
+					<div class="small-list" style="margin-top: 1em">
+						Outputs can be
+						<br/>
+						<ul>
+							<li>
+								Literally anything that has an API
+							</li>
+						</ul>
+					</div>
+					<div class="small-list" style="margin-top: 1em">
+						Routing is implemented with the programming language of you choice
+						<br/>
+						<ul>
+							<li>
+								For Service Fabric: all .NET languages
+							</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+
+			<section>
+				<h2>
+					Comparing Functions & Service Fabric
+				</h2>
+				<h3>
+					Experiences from a load test in a real world project
+				</h3>
+				<div class="small-list">
+					3000 simulated devices sent a total of 1.200 messages per minute over several hours to an IoT Hub. Two different architectures
+					where evaluated
+					<br/>
+					<ul style="margin-top: 1em">
+						<li>
+							<a href="https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-event-processor-host">Event Processor Host</a> and
+							<a href="https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-actors-introduction">Service Fabric Actors</a> based solution running on a cluster of 3 A2 machines.
+						</li>
+						<li>
+							<a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-event-hubs">Azure Function Event Hub trigger</a> based solution running on a consumption plan
+						</li>
+					</ul>
+				</div>
+				<div class="small-list" style="margin-top: 1em">
+					There where no complex requirements regarding data aggregation or analyzing the event stream, but the messages where serialized
+					using
+					<a href="https://developers.google.com/protocol-buffers/">Protobuf</a>, which ruled out Stream Analytics
+				</div>
+			</section>
+
+			<section>
+				<h2>
+					Comparing Functions & Service Fabric
+				</h2>
+				<h3>
+					Experiences from a load test in a real world project
+				</h3>
+				<div class="small-list">
+					The Functions based approach turned out to be...
+					<br/>
+					<ul style="margin-top: 1em">
+						<li class="fragment">
+							faster - processing a message from IoT Hub into the storage took only ~200ms (compared to ~500ms-700ms in the SF approach)
+						</li>
+						<li class="fragment">
+							cheaper to run - using Service Fabric, even for development environments you'd need a cluster of several machines, while
+							the Functions consumption plan could handle the production load nearly for free (sorry, Microsoft 🙂)
+						</li>
+						<li class="fragment">
+							easier to develop - being able to use existing components such as the Function Event Hub bindings saved us a ton of boilerplate
+							code
+						</li>
+					</ul>
+					<br/>
+					<div class="fragment" style="margin-top: 1em">
+						... faster, cheaper, easier - this sounds too good to be true, right?
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<h2>Azure IoT Data Ingress cheat sheet</h2>
+				<div class="small-list">
+					<ul>
+						<li>
+							You just want to persist the data flowing into your IoT Hub, without transformation or other logic?
+							<br/>→ Use IoT Hubs built-in routing
+						</li>
+						<li class="fragment" style="margin-top: 1em">
+							Your data is serialized as JSON, CSV or AVRO, and the reference data you need to correlate an event stream to does not change
+							(often)?
+							<br/>→ Consider using Stream Analytics. Depending on if you have a SA job anyway or not, and also on your data throughput, a Function might be cheaper, though
+						</li>
+						<li class="fragment" style="margin-top: 1em">
+							Do you expect complex processing logic, a lot of caching issues, or do you need a Service Fabric cluster anyway?
+							<br/>→ Use <a href="https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-actors-introduction">Service Fabric Actors</a> and <a href="https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-event-processor-host">Event Processor Host</a>
+						</li>
+						<li class="fragment" style="margin-top: 1em">
+							In many other cases...
+							<br/>→ Consider using a Function
+						</li>
+					</ul>
+				</div>
+			</section>
+			<section>
+				<h2>Thanks for listening</h2>
+				<h3>Questions?</h3>
+				<div>You can find the slides at <a href=""></a></div>
+			</section>
+		</div>
+
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.js"></script>
+
+	<script>
+
+		// More info https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			history: true,
+			center: true,
+
+			transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+			// More info https://github.com/hakimel/reveal.js#dependencies
+			dependencies: [
+				{ src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+				{ src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+				{ src: 'plugin/search/search.js', async: true },
+				{ src: 'plugin/zoom-js/zoom.js', async: true },
+				{ src: 'plugin/notes/notes.js', async: true }
+			]
+		});
+
+	</script>
+
+</body>
+
+</html>
