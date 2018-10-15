@@ -73,7 +73,7 @@
 						Deserializing arriving packages
 					</li>
 					<li class="fragment">
-						Making sceurity & plausibility checks
+						Making security & plausibility checks
 					</li>
 					<li class="fragment">
 						Routing data forward into the system
@@ -188,7 +188,7 @@
 						</ul>
 					</div>
 					<div class="small-list" style="margin-top: 1em">
-						Routing is implemented with the programming language of you choice
+						Routing is implemented with the programming language of your choice
 						<br/>
 						<ul>
 							<li>
@@ -232,7 +232,7 @@
 						</ul>
 					</div>
 					<div class="small-list" style="margin-top: 1em">
-						Routing is implemented with the programming language of you choice
+						Routing is implemented with the programming language of your choice
 						<br/>
 						<ul>
 							<li>
@@ -252,7 +252,7 @@
 					Experiences from a load test in a real world project
 				</h3>
 				<div class="small-list">
-					3000 simulated devices sent a total of 1.200 messages per minute over several hours to an IoT Hub. Two different architectures
+					3000 simulated devices sent a total of 1.200 messages per minute (which isn't very much in IoT scnearios) over several hours to an IoT Hub. Two different architectures
 					where evaluated
 					<br/>
 					<ul style="margin-top: 1em">
@@ -284,11 +284,11 @@
 					<br/>
 					<ul style="margin-top: 1em">
 						<li class="fragment">
-							faster - processing a message from IoT Hub into the storage took only ~200ms (compared to ~500ms-700ms in the SF approach)
+							faster - processing a message from IoT Hub into the storage took only ~200ms (compared to ~500ms-700ms in the Service Fabric approach)
 						</li>
 						<li class="fragment">
 							cheaper to run - using Service Fabric, even for development environments you'd need a cluster of several machines, while
-							the Functions consumption plan could handle the production load nearly for free (sorry, Microsoft 🙂)
+							the Functions consumption plan could handle the production load nearly for free <span class="fragment">(sorry, Microsoft 🙂)</span>
 						</li>
 						<li class="fragment">
 							easier to develop - being able to use existing components such as the Function Event Hub bindings saved us a ton of boilerplate
@@ -313,7 +313,7 @@
 						<li class="fragment" style="margin-top: 1em">
 							Your data is serialized as JSON, CSV or AVRO, and the reference data you need to correlate an event stream to does not change
 							(often)?
-							<br/>→ Consider using Stream Analytics. Depending on if you have a SA job anyway or not, and also on your data throughput, a Function might be cheaper, though
+							<br/>→ Consider using Stream Analytics. Depending on if you have a Stram Analytics job anyway or not, and also on your data throughput, a Function might be cheaper, though
 						</li>
 						<li class="fragment" style="margin-top: 1em">
 							Do you expect complex processing logic, a lot of caching issues, a very high load, or do you need a Service Fabric cluster anyway?

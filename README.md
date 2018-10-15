@@ -1,5 +1,5 @@
 # Azure IoT slidedecks
 
-* [Data Ingress Layer Best Practices](https://github.com/ChristianEder/azure-iot-slides/tree/master/ingress-best-practices)
+* [Data Ingress Layer Best Practices](https://christianeder.github.io/azure-iot-slides/ingress-best-practice)
 
 [Created using reveal.js](https://revealjs.com)
