@@ -88,16 +88,16 @@
 					<img class="stretch" data-src="img/IotHubRouting.png">
 
 					<div class="small-list">
-						Routes define
+						<span class="fragment">Routes define</span>
 						<br/>
 						<ul>
-							<li>
+							<li class="fragment">
 								What kind of data (device messages, lifecycle events, device twin changes)…
 							</li>
-							<li>
+							<li class="fragment">
 								… with which properties (filtering)…
 							</li>
-							<li>
+							<li class="fragment">
 								… goes where by selecting an Endpoint (=data sink, e.g. Event Hubs, Service Bus Queues & Topics, Blob Storage)
 							</li>
 						</ul>
@@ -119,27 +119,27 @@
 					<div style="width: 100%; height: 40%; background-image:url('img/StreamAnalytics.png'); background-size: contain; background-repeat: no-repeat; background-position-x: center;">
 					</div>
 					<div class="small-list">
-						Inputs can be
+						<span class="fragment">Inputs can be</span>
 						<br/>
 						<ul>
-							<li>
+							<li class="fragment">
 								Events streams from an IoT Hub or Event Hub (currently only JSON, CSV and AVRO serialization formats are supported)
 							</li>
-							<li>
+							<li class="fragment">
 								Reference data for joining from a blob storage
 							</li>
 						</ul>
 					</div>
 					<div class="small-list" style="margin-top: 1em">
-						Outputs can be
+						<span class="fragment">Outputs can be</span>
 						<br/>
 						<ul>
-							<li>
+							<li class="fragment">
 								Almost anything
 							</li>
 						</ul>
 					</div>
-					<div class="small-list" style="margin-top: 1em">
+					<div class="small-list fragment" style="margin-top: 1em">
 						Routing is implemented via a SQL-like syntax
 						<br/>
 						<ul>
@@ -164,30 +164,30 @@
 					<div style="width: 100%; height: 40%; background-image:url('img/FunctionRouting.png'); background-size: contain; background-repeat: no-repeat; background-position-x: center;">
 					</div>
 					<div class="small-list">
-						Inputs / Triggers can be
+						<span class="fragment">Inputs / Triggers can be</span>
 						<br/>
 						<ul>
-							<li>
+							<li class="fragment">
 								HTTPS requests
 							</li>
-							<li>
+							<li class="fragment">
 								Events streams from an IoT Hub or Event Hub, Messages from a Service Bus
 							</li>
-							<li>
+							<li class="fragment">
 								Updated / Inserted data in a Blob or CosmosDB
 							</li>
 						</ul>
 					</div>
 					<div class="small-list" style="margin-top: 1em">
-						Outputs can be
+						<span class="fragment">Outputs can be</span>
 						<br/>
 						<ul>
-							<li>
+							<li class="fragment">
 								Literally anything that has an API
 							</li>
 						</ul>
 					</div>
-					<div class="small-list" style="margin-top: 1em">
+					<div class="small-list fragment" style="margin-top: 1em">
 						Routing is implemented with the programming language of your choice
 						<br/>
 						<ul>
@@ -214,24 +214,24 @@
 					<div style="width: 100%; height: 50%; background-image:url('img/ComputeRouting.png'); background-size: contain; background-repeat: no-repeat; background-position-x: center;">
 					</div>
 					<div class="small-list">
-						Inputs / Triggers can be
+						<span class="fragment">Inputs / Triggers can be</span>
 						<br/>
 						<ul>
-							<li>
+							<li class="fragment">
 								Literally anything that has an API
 							</li>
 						</ul>
 					</div>
 					<div class="small-list" style="margin-top: 1em">
-						Outputs can be
+						<span class="fragment">Outputs can be</span>
 						<br/>
 						<ul>
-							<li>
+							<li class="fragment">
 								Literally anything that has an API
 							</li>
 						</ul>
 					</div>
-					<div class="small-list" style="margin-top: 1em">
+					<div class="small-list fragment" style="margin-top: 1em">
 						Routing is implemented with the programming language of your choice
 						<br/>
 						<ul>
@@ -252,20 +252,23 @@
 					Experiences from a load test in a real world project
 				</h3>
 				<div class="small-list">
-					3000 simulated devices sent a total of 1.200 messages per minute (which isn't very much in IoT scnearios) over several hours to an IoT Hub. Two different architectures
-					where evaluated
+					<span class="fragment">
+						3000 simulated devices sent a total of 1.200 messages per minute (which isn't very much in IoT scnearios) over several hours
+						to an IoT Hub. Two different architectures where evaluated
+					</span>
+
 					<br/>
 					<ul style="margin-top: 1em">
-						<li>
+						<li class="fragment">
 							<a href="https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-event-processor-host">Event Processor Host</a> and
 							<a href="https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-actors-introduction">Service Fabric Actors</a> based solution running on a cluster of 3 A2 machines.
 						</li>
-						<li>
+						<li class="fragment">
 							<a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-event-hubs">Azure Function Event Hub trigger</a> based solution running on a consumption plan
 						</li>
 					</ul>
 				</div>
-				<div class="small-list" style="margin-top: 1em">
+				<div class="small-list fragment" style="margin-top: 1em">
 					There where no complex requirements regarding data aggregation or analyzing the event stream, but the messages where serialized
 					using
 					<a href="https://developers.google.com/protocol-buffers/">Protobuf</a>, which ruled out Stream Analytics
@@ -284,11 +287,13 @@
 					<br/>
 					<ul style="margin-top: 1em">
 						<li class="fragment">
-							faster - processing a message from IoT Hub into the storage took only ~200ms (compared to ~500ms-700ms in the Service Fabric approach)
+							faster - processing a message from IoT Hub into the storage took only ~200ms (compared to ~500ms-700ms in the Service Fabric
+							approach)
 						</li>
 						<li class="fragment">
 							cheaper to run - using Service Fabric, even for development environments you'd need a cluster of several machines, while
-							the Functions consumption plan could handle the production load nearly for free <span class="fragment">(sorry, Microsoft 🙂)</span>
+							the Functions consumption plan could handle the production load nearly for free
+							<span class="fragment">(sorry, Microsoft 🙂)</span>
 						</li>
 						<li class="fragment">
 							easier to develop - being able to use existing components such as the Function Event Hub bindings saved us a ton of boilerplate
@@ -313,11 +318,15 @@
 						<li class="fragment" style="margin-top: 1em">
 							Your data is serialized as JSON, CSV or AVRO, and the reference data you need to correlate an event stream to does not change
 							(often)?
-							<br/>→ Consider using Stream Analytics. Depending on if you have a Stram Analytics job anyway or not, and also on your data throughput, a Function might be cheaper, though
+							<br/>→ Consider using Stream Analytics. Depending on if you have a Stram Analytics job anyway or not, and also on your
+							data throughput, a Function might be cheaper, though
 						</li>
 						<li class="fragment" style="margin-top: 1em">
-							Do you expect complex processing logic, a lot of caching issues, a very high load, or do you need a Service Fabric cluster anyway?
-							<br/>→ Use <a href="https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-actors-introduction">Service Fabric Actors</a> and <a href="https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-event-processor-host">Event Processor Host</a>
+							Do you expect complex processing logic, a lot of caching issues, a very high load, or do you need a Service Fabric cluster
+							anyway?
+							<br/>→ Use
+							<a href="https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-actors-introduction">Service Fabric Actors</a> and
+							<a href="https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-event-processor-host">Event Processor Host</a>
 						</li>
 						<li class="fragment" style="margin-top: 1em">
 							In many other cases...
@@ -331,7 +340,8 @@
 				<h3>Questions?</h3>
 				<div>You can find the slides at
 					<br/>
-					 <a style="font-size: 0.8em" href="https://christianeder.github.io/azure-iot-slides/ingress-best-practices">https://christianeder.github.io/azure-iot-slides/ingress-best-practices</a></div>
+					<a style="font-size: 0.8em" href="https://christianeder.github.io/azure-iot-slides/ingress-best-practices">https://christianeder.github.io/azure-iot-slides/ingress-best-practices</a>
+				</div>
 			</section>
 		</div>
 
