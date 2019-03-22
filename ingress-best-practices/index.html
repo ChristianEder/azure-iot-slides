@@ -50,18 +50,28 @@
 			</section>
 
 			<section>
-				<h2>Azure IoT reference architecture</h2>
-				<img class="stretch" data-src="img/reference-architecture.png">
+				<section>
+					<h2>Azure IoT reference architecture</h2>
+					<img class="stretch" data-src="img/reference-architecture.png">
+					<span>Source: <a href="https://aka.ms/iotrefarchitecture">https://aka.ms/iotrefarchitecture</a></span>
+				</section>
+				<section>
+					<h2>Azure IoT reference architecture</h2>
+					<img class="stretch" data-src="img/reference-architecture-detailed.png">
+					<span>Source: <a href="https://aka.ms/iotrefarchitecture">https://aka.ms/iotrefarchitecture</a></span>
+				</section>
 			</section>
 
 			<section>
 				<h2>Data Ingress</h2>
 				<div class="stretch">
-					<div style="width: 100%; height: 50%; background-image:url('img/ingress.png'); background-size: contain; background-repeat: no-repeat; background-position-x: center;">
+					<div
+						style="width: 100%; height: 50%; background-image:url('img/ingress.png'); background-size: contain; background-repeat: no-repeat; background-position-x: center;">
 					</div>
 					<ul style="margin-top: 50px">
 						<li class="fragment">Cloud Gateway is a solved problem: Azure IoT Hub</li>
-						<li class="fragment">Data Ingress is about moving data as fast as possible from the cloud gateway into stream processors & storage</li>
+						<li class="fragment">Data Ingress is about moving data as fast as possible from the cloud
+							gateway into stream processors & storage</li>
 					</ul>
 				</div>
 			</section>
@@ -89,7 +99,7 @@
 
 					<div class="small-list">
 						<span class="fragment">Routes define</span>
-						<br/>
+						<br />
 						<ul>
 							<li class="fragment">
 								What kind of data (device messages, lifecycle events, device twin changes)…
@@ -98,7 +108,8 @@
 								… with which properties (filtering)…
 							</li>
 							<li class="fragment">
-								… goes where by selecting an Endpoint (=data sink, e.g. Event Hubs, Service Bus Queues & Topics, Blob Storage)
+								… goes where by selecting an Endpoint (=data sink, e.g. Event Hubs, Service Bus Queues &
+								Topics, Blob Storage)
 							</li>
 						</ul>
 					</div>
@@ -116,14 +127,16 @@
 				<h2>Data Ingress - Available Azure services</h2>
 				<h3>Stream Analytics</h3>
 				<div class="stretch">
-					<div style="width: 100%; height: 40%; background-image:url('img/StreamAnalytics.png'); background-size: contain; background-repeat: no-repeat; background-position-x: center;">
+					<div
+						style="width: 100%; height: 40%; background-image:url('img/StreamAnalytics.png'); background-size: contain; background-repeat: no-repeat; background-position-x: center;">
 					</div>
 					<div class="small-list">
 						<span class="fragment">Inputs can be</span>
-						<br/>
+						<br />
 						<ul>
 							<li class="fragment">
-								Events streams from an IoT Hub or Event Hub (currently only JSON, CSV and AVRO serialization formats are supported)
+								Events streams from an IoT Hub or Event Hub (currently only JSON, CSV and AVRO
+								serialization formats are supported)
 							</li>
 							<li class="fragment">
 								Reference data for joining from a blob storage
@@ -132,7 +145,7 @@
 					</div>
 					<div class="small-list" style="margin-top: 1em">
 						<span class="fragment">Outputs can be</span>
-						<br/>
+						<br />
 						<ul>
 							<li class="fragment">
 								Almost anything
@@ -141,7 +154,7 @@
 					</div>
 					<div class="small-list fragment" style="margin-top: 1em">
 						Routing is implemented via a SQL-like syntax
-						<br/>
+						<br />
 						<ul>
 							<li>
 								SELECT * INTO output FROM input ... WHERE, GROUP BY
@@ -161,11 +174,12 @@
 				<h2>Data Ingress - Available Azure services</h2>
 				<h3>Functions</h3>
 				<div class="stretch">
-					<div style="width: 100%; height: 40%; background-image:url('img/FunctionRouting.png'); background-size: contain; background-repeat: no-repeat; background-position-x: center;">
+					<div
+						style="width: 100%; height: 40%; background-image:url('img/FunctionRouting.png'); background-size: contain; background-repeat: no-repeat; background-position-x: center;">
 					</div>
 					<div class="small-list">
 						<span class="fragment">Inputs / Triggers can be</span>
-						<br/>
+						<br />
 						<ul>
 							<li class="fragment">
 								HTTPS requests
@@ -180,7 +194,7 @@
 					</div>
 					<div class="small-list" style="margin-top: 1em">
 						<span class="fragment">Outputs can be</span>
-						<br/>
+						<br />
 						<ul>
 							<li class="fragment">
 								Literally anything that has an API
@@ -189,7 +203,7 @@
 					</div>
 					<div class="small-list fragment" style="margin-top: 1em">
 						Routing is implemented with the programming language of your choice
-						<br/>
+						<br />
 						<ul>
 							<li>
 								C#, F#, JavaScript, Java (in preview)
@@ -211,11 +225,12 @@
 				<h2>Data Ingress - Available Azure services</h2>
 				<h3>General Compute Services - such as Service Fabric</h3>
 				<div class="stretch">
-					<div style="width: 100%; height: 50%; background-image:url('img/ComputeRouting.png'); background-size: contain; background-repeat: no-repeat; background-position-x: center;">
+					<div
+						style="width: 100%; height: 50%; background-image:url('img/ComputeRouting.png'); background-size: contain; background-repeat: no-repeat; background-position-x: center;">
 					</div>
 					<div class="small-list">
 						<span class="fragment">Inputs / Triggers can be</span>
-						<br/>
+						<br />
 						<ul>
 							<li class="fragment">
 								Literally anything that has an API
@@ -224,7 +239,7 @@
 					</div>
 					<div class="small-list" style="margin-top: 1em">
 						<span class="fragment">Outputs can be</span>
-						<br/>
+						<br />
 						<ul>
 							<li class="fragment">
 								Literally anything that has an API
@@ -233,7 +248,7 @@
 					</div>
 					<div class="small-list fragment" style="margin-top: 1em">
 						Routing is implemented with the programming language of your choice
-						<br/>
+						<br />
 						<ul>
 							<li>
 								For Service Fabric: all .NET languages
@@ -253,25 +268,33 @@
 				</h3>
 				<div class="small-list">
 					<span class="fragment">
-						3000 simulated devices sent a total of 1.200 messages per minute (which isn't very much in IoT scnearios) over several hours
+						3000 simulated devices sent a total of 1.200 messages per minute (which isn't very much in IoT
+						scnearios) over several hours
 						to an IoT Hub. Two different architectures were evaluated
 					</span>
 
-					<br/>
+					<br />
 					<ul style="margin-top: 1em">
 						<li class="fragment">
-							<a href="https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-event-processor-host">Event Processor Host</a> and
-							<a href="https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-actors-introduction">Service Fabric Actors</a> based solution running on a cluster of 3 A2 machines.
+							<a href="https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-event-processor-host">Event
+								Processor Host</a> and
+							<a
+								href="https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-actors-introduction">Service
+								Fabric Actors</a> based solution running on a cluster of 3 A2 machines.
 						</li>
 						<li class="fragment">
-							<a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-event-hubs">Azure Function Event Hub trigger</a> based solution running on a consumption plan
+							<a
+								href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-event-hubs">Azure
+								Function Event Hub trigger</a> based solution running on a consumption plan
 						</li>
 					</ul>
 				</div>
 				<div class="small-list fragment" style="margin-top: 1em">
-					There were no complex requirements regarding data aggregation or analyzing the event stream, but the messages were serialized
+					There were no complex requirements regarding data aggregation or analyzing the event stream, but the
+					messages were serialized
 					using
-					<a href="https://developers.google.com/protocol-buffers/">Protobuf</a>, which ruled out Stream Analytics
+					<a href="https://developers.google.com/protocol-buffers/">Protobuf</a>, which ruled out Stream
+					Analytics
 				</div>
 			</section>
 
@@ -284,23 +307,26 @@
 				</h3>
 				<div class="small-list">
 					The Functions based approach turned out to be...
-					<br/>
+					<br />
 					<ul style="margin-top: 1em">
 						<li class="fragment">
-							faster - processing a message from IoT Hub into the storage took only ~200ms (compared to ~500ms-700ms in the Service Fabric
+							faster - processing a message from IoT Hub into the storage took only ~200ms (compared to
+							~500ms-700ms in the Service Fabric
 							approach)
 						</li>
 						<li class="fragment">
-							cheaper to run - using Service Fabric, even for development environments you'd need a cluster of several machines, while
+							cheaper to run - using Service Fabric, even for development environments you'd need a
+							cluster of several machines, while
 							the Functions consumption plan could handle the production load nearly for free
 							<span class="fragment">(sorry, Microsoft 🙂)</span>
 						</li>
 						<li class="fragment">
-							easier to develop - being able to use existing components such as the Function Event Hub bindings saved us a ton of boilerplate
+							easier to develop - being able to use existing components such as the Function Event Hub
+							bindings saved us a ton of boilerplate
 							code
 						</li>
 					</ul>
-					<br/>
+					<br />
 					<div class="fragment" style="margin-top: 1em">
 						... faster, cheaper, easier - this sounds too good to be true, right?
 					</div>
@@ -312,25 +338,32 @@
 				<div class="small-list">
 					<ul>
 						<li>
-							You just want to persist the data flowing into your IoT Hub, without transformation or other logic?
-							<br/>→ Use IoT Hubs built-in routing
+							You just want to persist the data flowing into your IoT Hub, without transformation or other
+							logic?
+							<br />→ Use IoT Hubs built-in routing
 						</li>
 						<li class="fragment" style="margin-top: 1em">
-							Your data is serialized as JSON, CSV or AVRO, and the reference data you need to correlate an event stream to does not change
+							Your data is serialized as JSON, CSV or AVRO, and the reference data you need to correlate
+							an event stream to does not change
 							(often)?
-							<br/>→ Consider using Stream Analytics. Depending on if you have a Stream Analytics job anyway or not, and also on your
+							<br />→ Consider using Stream Analytics. Depending on if you have a Stream Analytics job
+							anyway or not, and also on your
 							data throughput, a Function might be cheaper, though
 						</li>
 						<li class="fragment" style="margin-top: 1em">
-							Do you expect complex processing logic, a lot of caching issues, a very high load, or do you need a Service Fabric cluster
+							Do you expect complex processing logic, a lot of caching issues, a very high load, or do you
+							need a Service Fabric cluster
 							anyway?
-							<br/>→ Use
-							<a href="https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-actors-introduction">Service Fabric Actors</a> and
-							<a href="https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-event-processor-host">Event Processor Host</a>
+							<br />→ Use
+							<a
+								href="https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-actors-introduction">Service
+								Fabric Actors</a> and
+							<a href="https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-event-processor-host">Event
+								Processor Host</a>
 						</li>
 						<li class="fragment" style="margin-top: 1em">
 							In many other cases...
-							<br/>→ Consider using a Function
+							<br />→ Consider using a Function
 						</li>
 					</ul>
 				</div>
@@ -339,12 +372,14 @@
 				<h2>Thanks for listening</h2>
 				<h3>Questions?</h3>
 				<div>You can find the slides at
-					<br/>
-					<a style="font-size: 0.8em" href="https://christianeder.github.io/azure-iot-slides/ingress-best-practices">https://christianeder.github.io/azure-iot-slides/ingress-best-practices</a>
+					<br />
+					<a style="font-size: 0.8em"
+						href="https://christianeder.github.io/azure-iot-slides/ingress-best-practices">https://christianeder.github.io/azure-iot-slides/ingress-best-practices</a>
 				</div>
 				<div>And a more detailed view on the architecture at
-					<br/>
-					<a style="font-size: 0.8em" href="https://github.com/christianeder/azure-iot-reference-architectures">https://github.com/christianeder/azure-iot-reference-architectures</a>
+					<br />
+					<a style="font-size: 0.8em"
+						href="https://github.com/christianeder/azure-iot-reference-architectures">https://github.com/christianeder/azure-iot-reference-architectures</a>
 				</div>
 			</section>
 		</div>
